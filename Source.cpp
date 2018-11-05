@@ -1,161 +1,170 @@
 #include<iostream>
-#include<string>
+
 using namespace std;
 
-//Ex. 1 - palindromitate (logica este sa iei fiecare cifra de la final si sa creezi un nou nr)
 
-/*int main()
+// Ex. 1 - Al n-lea numar fibonacci  => seria fibonacci: f(n) = f(n-1)+f(n-2) . Ex : 1 , 1 , 2 , 3 , 5 , 8 , 13... (13 = 8 + 5)
+
+/*
+int main()
 {
-	int x;
-	cout << "x = ", cin >> x;
+	int fibonacci;
+	int ultimul = 1;
+	int penultimul = 0;
+	int n;
+	cout << "n = ", cin >> n;
 
-	int w = x;
-	int result = 0;
 
-
-	while (w > 0)
+	for (int i = 1; i <= n; i++)
 	{
-		
-		result = 10*result + (w % 10);
-		w = w / 10;
+		fibonacci = ultimul + penultimul; 
+		penultimul = ultimul;
+		ultimul = fibonacci;
+
 	}
 
-	if (result == x)
-	{
-		cout << "palindrom" << endl;
-	}
-
-	if (result != x)
-	{
-		cout << "nu" << endl;
-	}
+	cout << fibonacci << endl;
 
 	return 0;
-}
-*/
-
-//Ex. 2 - Nr cifre (imparttim la 10 numarul , pana cand e sub 1)
-
-/*int main()
-{
-	int x;
-	cout << "x = ", cin >> x;
-	int k = 0;
-
-	while (x >= 1)
-	{
-		
-		x = x / 10;
-		k++;
-
-	}
-
-	cout << k << endl;
- 	return 0;
-
 
 }
 */
 
-//Ex.3 cel mai mare cu numerele lui
+//Ex. 2 - Fie n numar natural.Este n fibonacci ? => iau fiecare numar fibonacci si vad daca vreun numar fibonacci este egal cu numaru dorit.Cand numarul fibonacci este mai mare decat numarul dorit , programul se inchide (lucru care s-ar putea face fara o structura extterna daca ar fi vreo mettoda de a afla ''locul'' numarului dorit ( i)).
 
-/*int main()
+/*
+int main()
 {
-	int x;
-	cout << "x = ", cin >> x;
+	int fibonacci;
+	int k;
+	int ultimul = 1;
+	int penultimul = 0;
 
-	//creez array
-	int arr[10] = { 0 };
+	cout << "k = ", cin >> k;
 
-	//transform numaru in string
-	string str = to_string(x);
-
-	//updatez array-ul
-	for (int i = 0; i < str.length(); i++)
-		arr[str[i] - '0']++;
-
-	int result = 0;
-	int multiplier = 1;
-
-	for (int k = 0; k <= 9; k++)
+	for (int i = 1; i <= k; i++)
 	{
-		while (arr[k] >= 1)
+		fibonacci = ultimul + penultimul;
+		penultimul = ultimul;
+		ultimul = fibonacci;
+
+		if (fibonacci == k)
 		{
-			result = result + (k*multiplier);
-			multiplier *= 10;
-			arr[k]--;
-
+			cout << "este fibonacii" << endl;
+			break;
+		}
+		if (fibonacci >= k)
+		{
+			cout << "nu e fibonacci" << endl;
+			break;
 		}
 	}
-	cout << result << endl;
+	
+	return 0;
+
+
+}
+*/
+
+
+//Ex.3 - Sa se afiseze primele n numere Fibonacci. => spun cate numere vreau (n). La fiecare ciclarea valoare lui i creste( i = numarul de ciclari care corespunde cu numarul de numere fibonacci) si cand i este mai mare ca n , oprim loop.La fiecare ciclare scoatem numarul fibonacci
+/*
+int main()
+{
+	int n;
+	int fibonacci;
+	int ultimul = 1;
+	int penultimul = 0;
+
+	cout << "n = ", cin >> n;
+
+	for (int i = 1; i <= n; i++)
+	{
+		fibonacci = ultimul + penultimul;
+		penultimul = ultimul;
+		ultimul = fibonacci;
+		cout << fibonacci << endl;
+	}
 	return 0;
 }
 */
 
-//Ex. 4 cel mai mic cu numerele lui
+//Ex.4 - Lista primelor n numere prime fibonacci. -> generez n numere fibonacci . Fiecare numar este testat pentru primaliatete(divid cu fiecare numar pana la radical din acesta sau mai bine zis x*x).Daca gasesc un divizor , inseamna ca numaru nu ii prim . Daca nu gasesc, loopul va contiinua pana cand x va fii prea mare , check ramandn 1 si arattandui pc ca am gasit un nr prim..
 
-/*int main()
+/*
+int main()
 {
-	int x;
-	cout << "x = ", cin >> x;
-
-	//creez array
-	int arr[10] = { 0 };
-
-	//transform numaru in string
-	string str = to_string(x);
-
-	//updatez array-ul
-	for (int i = 0; i < str.length(); i++)
-		arr[str[i] - '0']++;
-
-	int result = 0;
-	int multiplier = 1;
-
-	for (int k = 9; k >=0; k--)
+	int fibonacci;
+	int ultimul = 1;
+	int penultimul = 0;
+	int n;
+	cout << "n = ", cin >> n;
+	int check = 1;
+	
+	for(int i = 1;i <= n;i++)
 	{
-		while (arr[k] >= 1)
-		{
-			result = result + (k*multiplier);
-			multiplier *= 10;
-			arr[k]--;
+		fibonacci = ultimul + penultimul;
+		penultimul = ultimul;
+		ultimul = fibonacci;
 
+		check = 1; 
+		for(int x = 2;x*x <= fibonacci;x++)
+		{
+			if (fibonacci%x == 0)
+			{
+				check = 0;
+				break;
+			}
+			
+		}
+		
+		if (check == 1)
+		{
+			cout << fibonacci << endl;
 		}
 	}
-	cout << result << endl;
+
 	return 0;
+
+
 }
+
 */
 
-
-//Ex. 5 problema cu array-ul
+//Ex.5 - Raportul fibonacci.
 
 int main()
 {
-	int arr[5] = { 7,19,5,21,4 };
+	int fibonacci;
+	int ultimul = 1;
+	int anterior = 0;
+	int n; 
+	cout << "n = ", cin >> n;
 
-	int vector[5] = { 0 };
-
-	vector[0] = arr[0];
-
-	for (int i = 0; i < sizeof(arr)-1; i++)
+	for (int i = 1; i <= n; i++)
 	{
-		if (arr[i] < arr[i + 1])
-		{
-			vector[i + 1] = arr[i + 1];
-		}
-		if (arr[i] > arr[i + 1])
-		{
-			arr[i + 1] = arr[1];
-		}
-	}
+		fibonacci = ultimul + anterior;
+		cout << fibonacci << endl;
+		
+		int k = ultimul / fibonacci;
+		int l = anterior / ultimul;
 
-	for (int k = 0; k < sizeof(vector); k++)
-	{
-		cout << vector[k] << endl;
+		for (int y = 1; y <= n; y++)
+		{
+		    k *= 10;
+		    l *= 10;
+		}
+		if (k % 10 != l % 10)
+		{
+			break;
+		}
+
+		anterior = ultimul;
+		ultimul = fibonacci;
+
+
 	}
 
 	return 0;
-}
 
-//correct recapitulare
+}
